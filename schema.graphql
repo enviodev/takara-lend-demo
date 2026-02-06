@@ -1,0 +1,22 @@
+type Token {
+  id: ID!
+}
+
+type Account {
+  id: ID!
+}
+
+type TokenAccount {
+  id: ID!
+  token_id: String!
+  account_id: String!
+  balance: BigInt!
+}
+
+type Approval {
+  id: ID!
+  token_id: String!
+  amount: BigInt!
+  owner_id: String!
+  spender_id: String!
+}

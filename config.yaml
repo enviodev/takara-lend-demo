@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: takara-lend-demo
+description: Takara Lend tERC20 tokens indexer on SEI
+networks:
+  - id: 1329 # SEI EVM
+    hypersync_config:
+      url: https://sei.hypersync.xyz
+    start_block: 0
+    contracts:
+      - name: TERC20Delegator
+        address:
+          - "0xa26b9bfe606d29f16b5aecf30f9233934452c4e2" # tSEI
+          - "0x0c5596dff747b5eeab703beb0ee21da7bda0b392" # tspSEI
+          - "0xa82a40324dbf7b57e87bd07c9e1d722e9754be9b" # tUSDT0
+          - "0xd1e6a6f58a29f64ab2365947acb53efeb6cc05e0" # tnUSDC
+          - "0xabfb7a392a6daac50f99c5d14b5f27effd08fe03" # tuBTC
+          - "0x963db326b734fd58a9396c020bbb52c14acafb02" # tMBTC
+          - "0xe8e69c45df3888a8df6b81fb068f63593cda2afe" # tfiaBTC
+          - "0x7F3C2A5bCA48150c7Ce07DcEAb9B73336a7e592a" # tenzoBTC
+          - "0xe6eacaf0888ef15928bdd057716074a679fad49d" # tETH
+          - "0xa54a39d8d2126c2aae1622443b30f19414c74f3b" # tsolvBTC
+          - "0x413498e8ed8608053de3f407dbedd29f19f80c04" # tSBTC
+          - "0x51be1bade695f7adb37ecf597ec2f97ebd99fbfe" # tFBTC
+          - "0xf2954e2875df36914da0346f648a0b04e8122199" # tWBTC
+          - "0xda642a7821e91ed285262fead162e5fd17200429" # tiSEI
+          - "0xc3c9e322f4aae352ace79d0e62ade3563fb86e87" # tUSDC.n
+          - "0xc68351b9b3638a6f4a3ae100bd251e227bbd7479" # tUSDT
+          - "0xadeb3aff3cdb149bd35820698fb7c8b8e52f4b84" # tUSDY
+          - "0x372b1b8ba8438adbb06bde2894ee1d27996fe2a8" # twstETH
+          - "0x92e51466482146e71b692ced2265284968e8b3d6" # tfastUSD
+          - "0xf1a90d0edfbb98e37f46626ac717fab9437272f3" # tsfastUSD
+        abi_file_path: abis/terc20delegator.json
+        handler: src/EventHandlers.ts
+        events:
+          - event: Approval
+          - event: Transfer
+unordered_multichain_mode: true
+preload_handlers: true
+address_format: lowercase
