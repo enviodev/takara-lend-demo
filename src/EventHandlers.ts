@@ -1,16 +1,14 @@
-import {
-  TERC20Delegator,
-  Token,
-  TokenAccount,
-  Approval,
-} from "generated";
+import { indexer } from "envio";
+import { Token, TokenAccount, Approval } from "envio";
 
 const tokenAccountId = (tokenAddress: string, accountAddress: string) =>
   `${tokenAddress}-${accountAddress}`;
 const approvalId = (tokenAddress: string, owner: string, spender: string) =>
   `${tokenAddress}-${owner}-${spender}`;
 
-TERC20Delegator.Approval.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "TERC20Delegator", event: "Approval" },
+  async ({ event, context }) => {
   const tokenAddress = event.srcAddress.toLowerCase();
   const owner = event.params.owner.toString();
   const spender = event.params.spender.toString();
@@ -36,9 +34,12 @@ TERC20Delegator.Approval.handler(async ({ event, context }) => {
     spender_id: spender,
   };
   context.Approval.set(approval);
-});
+}
+);
 
-TERC20Delegator.Transfer.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "TERC20Delegator", event: "Transfer" },
+  async ({ event, context }) => {
   const tokenAddress = event.srcAddress.toLowerCase();
   const from = event.params.from.toString();
   const to = event.params.to.toString();
@@ -89,4 +90,5 @@ TERC20Delegator.Transfer.handler(async ({ event, context }) => {
   if (toAccount === undefined) {
     context.Account.set({ id: to });
   }
-});
+}
+);

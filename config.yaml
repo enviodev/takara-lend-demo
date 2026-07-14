@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=./node_modules/envio/evm.schema.json
 name: takara-lend-demo
 description: Takara Lend tERC20 tokens indexer on SEI
-networks:
+chains:
   - id: 1329 # SEI EVM
     hypersync_config:
       url: https://sei.hypersync.xyz
@@ -34,6 +34,4 @@ networks:
         events:
           - event: Approval
           - event: Transfer
-unordered_multichain_mode: true
-preload_handlers: true
 address_format: lowercase

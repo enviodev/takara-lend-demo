@@ -1,5 +1,5 @@
 import assert from "assert";
-import { TestHelpers, TokenAccount } from "generated";
+import { TestHelpers, TokenAccount } from "envio";
 const { MockDb, TERC20Delegator, Addresses } = TestHelpers;
 
 describe("Transfers", () => {
